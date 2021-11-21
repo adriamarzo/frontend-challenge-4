@@ -59,7 +59,12 @@ export function getNodeOutputConnections(node, graph) {
  * @param {Object} graph Bot model object.
  * @returns {Array} Array of Connection models.
  */
-export function getNodeConnections(node, graph) {}
+export function getNodeConnections(node, graph) {
+  return getConnectionsModel(graph).filter(
+    ({ sourcePath, targetPath }) =>
+      targetPath === node.id || sourcePath === node.id
+  );
+}
 
 /**
  * getLeafNodes: Get all leaf nodes (no output connections).
