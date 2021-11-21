@@ -108,4 +108,22 @@ export function getRootNodes(graph) {
  * @param {Object} graph Bot model object.
  * @returns {Boolean} True if a node has different source paths.
  */
-export function hasMultipleSources(node, graph) {}
+export function hasMultipleSources(node, graph) {
+  const connections = getConnectionsModel(graph);
+  const connectionsLength = connections.length;
+  const { id } = node;
+  let sourcesCount = 0;
+
+  for (let i = 0; i < connectionsLength; i += 1) {
+    const { targetPath } = connections[i];
+
+    if (targetPath === id) {
+      if (sourcesCount > 0) {
+        return true;
+      }
+      sourcesCount += 1;
+    }
+  }
+
+  return false;
+}
