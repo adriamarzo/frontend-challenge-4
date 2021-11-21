@@ -72,7 +72,14 @@ export function getNodeConnections(node, graph) {
  * @param {Object} graph Bot model object.
  * @returns {Array} Array of Node models.
  */
-export function getLeafNodes(graph) {}
+export function getLeafNodes(graph) {
+  const nodes = getNodesModel(graph);
+  const connections = getConnectionsModel(graph);
+
+  return nodes.filter(
+    ({ id }) => !connections.find(({ sourcePath }) => sourcePath === id)
+  );
+}
 
 /**
  * getRootNodes: Get all root nodes (no input connections).
