@@ -87,7 +87,19 @@ export function getLeafNodes(graph) {
  * @param {Object} graph Bot model object.
  * @returns {Array} Array of Node models.
  */
-export function getRootNodes(graph) {}
+export function getRootNodes(graph) {
+  const rootNodes = [];
+  const nodes = getNodesModel(graph);
+  const connections = getConnectionsModel(graph);
+
+  nodes.forEach((node) => {
+    if (!connections.find(({ targetPath }) => targetPath === node.id)) {
+      rootNodes.push(node);
+    }
+  });
+
+  return rootNodes;
+}
 
 /**
  * hasMultipleSources: Determines if a node is reachable from different sources.
