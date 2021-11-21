@@ -3,12 +3,8 @@ import Layout from '../../components/layout';
 import ChatInput from './components/chat-input';
 import ChatMessage from './components/chat-message';
 import { landbotCore } from '../../lib/landbot-core';
-import {
-  messagesFilter,
-  parseMessage,
-  parseMessages,
-  scrollBottom,
-} from './utils';
+import { messagesFilter, parseMessages, scrollBottom } from './utils';
+import Message from '../../models/message-model';
 
 const Chat = () => {
   const [messages, setMessages] = useState({});
@@ -17,7 +13,7 @@ const Chat = () => {
     landbotCore.pipelines.$readableSequence.subscribe((data) => {
       setMessages((messages) => ({
         ...messages,
-        [data.key]: parseMessage(data),
+        [data.key]: new Message(data).toJSON(),
       }));
     });
 

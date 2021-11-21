@@ -1,18 +1,10 @@
+import Message from '../../models/message-model';
+
 export function parseMessages(messages) {
   return Object.values(messages).reduce((obj, next) => {
-    obj[next.key] = parseMessage(next);
+    obj[next.key] = new Message(next).toJSON();
     return obj;
   }, {});
-}
-
-export function parseMessage(data) {
-  return {
-    key: data.key,
-    text: data.title || data.message,
-    author: data.samurai !== undefined ? 'bot' : 'user',
-    timestamp: data.timestamp,
-    type: data.type,
-  };
 }
 
 export function messagesFilter(data) {
@@ -21,10 +13,12 @@ export function messagesFilter(data) {
 }
 
 export function scrollBottom(container) {
-  if (container) {
-    container.scrollTo({
-      top: container.scrollHeight,
-      behavior: 'smooth',
-    });
+  if (!container) {
+    return;
   }
+
+  container.scrollTo({
+    top: container.scrollHeight,
+    behavior: 'smooth',
+  });
 }

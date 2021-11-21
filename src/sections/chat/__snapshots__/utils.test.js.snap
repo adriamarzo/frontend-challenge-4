@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Chat utils parseMessages should parse the messages object using the Message Model 1`] = `
+Object {
+  "key": Object {
+    "author": "bot",
+    "key": "key",
+    "text": "The title",
+    "timestamp": 1637533924211,
+    "type": "text",
+  },
+  "key 2": Object {
+    "author": "user",
+    "key": "key 2",
+    "text": "The title 2",
+    "timestamp": 1637533924221,
+    "type": "text",
+  },
+}
+`;
