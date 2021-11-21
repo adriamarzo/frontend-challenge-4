@@ -1,7 +1,7 @@
 import ChatMessage from './chat-message';
 
 const storyDef = {
-  title: 'Components/ChatMessage',
+  title: 'Chat/ChatMessage',
   component: ChatMessage,
 };
 

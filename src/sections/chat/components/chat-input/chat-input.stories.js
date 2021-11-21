@@ -1,7 +1,7 @@
 import ChatInput from './chat-input';
 
 const storyDef = {
-  title: 'Components/ChatInput',
+  title: 'Chat/ChatInput',
   component: ChatInput,
 };
 
