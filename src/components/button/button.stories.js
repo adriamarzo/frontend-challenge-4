@@ -1,4 +1,5 @@
 import React from 'react';
+import { action } from '@storybook/addon-actions';
 import Button from './button';
 
 const storyDef = {
@@ -20,6 +21,6 @@ const Template = (args) => <Button {...args} />;
 export const Default = Template.bind({});
 
 Default.args = {
-  onClick: () => console.log('click!'),
+  onClick: action('click!'),
   icon: 'fa-paper-plane',
 };
