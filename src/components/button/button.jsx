@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import Icon from '../icon';
 
 const Button = ({
   onClick,
@@ -15,11 +16,7 @@ const Button = ({
       disabled={disabled}
       type={type}
     >
-      {icon && (
-        <span className="icon is-large">
-          <i className={`fas ${icon} fa-lg`}></i>
-        </span>
-      )}
+      {icon && <Icon name={icon} />}
       {children && <span>{children}</span>}
     </button>
   );
