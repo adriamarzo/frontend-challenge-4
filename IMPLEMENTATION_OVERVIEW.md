@@ -37,7 +37,7 @@ For example, the `hasMultipleSources` method instead of iterating over all conne
 
 - Defined a GitHub workflow to publish automatically the storybook of the project to [GitHub pages](https://adriamarzo.github.io/frontend-challenge-4/).
 
-- The production ready version has been is available from https://landbot-challenge.netlify.app/
+- The production ready version is available from https://landbot-challenge.netlify.app/
 
 **Next improvements:**
 
