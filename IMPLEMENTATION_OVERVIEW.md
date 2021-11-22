@@ -35,6 +35,10 @@ For example, the `hasMultipleSources` method instead of iterating over all conne
 
 - It is recommendable to use enumerations instead of string literals (for example in `message type`) but since I do not know the possible values ​​I have left it as it was.
 
+- Defined a GitHub workflow to publish automatically the storybook of the project to [GitHub pages](https://adriamarzo.github.io/frontend-challenge-4/).
+
+- The production ready version has been is available from https://landbot-challenge.netlify.app/
+
 **Next improvements:**
 
 - Refactor the project using Typescript (especially the data model).
