@@ -1,0 +1,55 @@
+name: CI/CD - storybook
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+
+jobs:
+  quality:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [14.x, 16.x]
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'npm'
+      - name: Install
+        run: npm ci
+      - name: Test code
+        run: npm run test
+
+  deploy-to-gh-pages:
+    runs-on: ubuntu-latest
+    needs: [publish]
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'npm'
+      - name: Use SSH key
+        run: |
+          mkdir -p ~/.ssh/
+          echo "${{secrets.SSH_PRIVATE_KEY}}" > ~/.ssh/id_rsa
+          sudo chmod 600 ~/.ssh/id_rsa
+      - name: Git user config
+        run: |
+          git config --global user.email "adriamarzo@gmail.com"
+          git config --global user.name "adriamarzo"
+      - name: Install
+        run: npm ci
+      - name: Build storybook
+        run: npm run build-storybook
+      - name: Deploy to github pages
+        run: npm run deploy:gh-pages -- -r git@github.com:adriamarzo/frontend-challenge-4.git
